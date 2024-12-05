@@ -1,6 +1,8 @@
+package Week2;
 import java.sql.*;
-
-public class W1_Student {
+// executeQuery	    Read  (fetch data)	ResultSet	    SELECT
+// executeUpdate	Write (modify data)	int(row count)	INSERT, UPDATE, DELETE,
+public class Student {
     public static void main(String[] args) {
         String DB_URL = "jdbc:mysql://localhost:3306/dbName";
         String USER = "root";

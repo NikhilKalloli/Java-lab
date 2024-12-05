@@ -1,6 +1,7 @@
+package Week2;
 import java.sql.*;
 
-public class W1_Employee {
+public class Employee {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost/Office";
         String user = "root";
