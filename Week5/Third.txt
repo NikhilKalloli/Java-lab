@@ -5,9 +5,7 @@ package myPack;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
-//import jakarta.servlet.annotation.*;
 
-//@WebServlet("/Voting")
 public class Voting extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,12 +37,16 @@ public class Voting extends HttpServlet {
         <form action="Voting" method="POST">
             <label for="fname">First Name:</label>
             <input type="text" id="fname" name="fname" required>
+
             <label for="lname">Last Name:</label>
             <input type="text" id="lname" name="lname" required>
+
             <label for="mail">E-mail:</label>
             <input type="text" id="mail" name="mail" required>
+
             <label for="age">Age:</label>
             <input type="text" id="age" name="age" required>
+            
             <input type="submit" value="Submit">
         </form>
     </body>

@@ -8,8 +8,8 @@ public class Employee {
         String pass = "";
 
         String createSQL = "CREATE DATABASE IF NOT EXISTS Office";
-        String createTable = "CREATE TABLE Employee (ID INT PRIMARY KEY, FName VARCHAR(20), LName VARCHAR(20), Project VARCHAR(20), Salary FLOAT) ";
-        String insert = "INSERT INTO Employee (ID, FName, LName, Project, Salary) VALUES (1, 'john', 'wick', 'continental', 87.64) ";
+        String createTable = "CREATE TABLE Employee (ID INT PRIMARY KEY, FName VARCHAR(20), LName VARCHAR(20), Project VARCHAR(20), Salary FLOAT)";
+        String insert = "INSERT INTO Employee (ID, FName, LName, Project, Salary) VALUES (1, 'john', 'wick', 'continental', 87.64)";
         
 
 

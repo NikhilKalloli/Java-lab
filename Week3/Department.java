@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Department {
     public static void main(String[] args) {
-        String DB_URL = "jdbc:mysql://localhost:3306/DepartmentDB"; // Update with your database name
+        String DB_URL = "jdbc:mysql://localhost:3306/DepartmentDB"; 
         String USER = "root";
         String PASS = "";
 
@@ -28,10 +28,13 @@ public class Department {
             // ii. Display details of Departments established in the year 2000 using PreparedStatement
             System.out.print("\nEnter the year to search for Departments: ");
             int year = scanner.nextInt();
+
             String queryByYear = "SELECT * FROM Department WHERE Year_Established = ?";
             PreparedStatement psYear = conn.prepareStatement(queryByYear);
+
             psYear.setInt(1, year);
             rs = psYear.executeQuery();
+
             System.out.println("\nDepartments established in the year " + year + ":");
             if (!rs.isBeforeFirst()) {
                 System.out.println("No departments found.");
@@ -50,12 +53,16 @@ public class Department {
             System.out.print("\nEnter Dept_ID to search: ");
             int deptID = scanner.nextInt();
             scanner.nextLine(); // Consume newline
+
             System.out.print("Enter Department Name to search: ");
             String deptName = scanner.nextLine();
+
             String queryByIDAndName = "SELECT * FROM Department WHERE Dept_ID = ? AND Name = ?";
             PreparedStatement psIDAndName = conn.prepareStatement(queryByIDAndName);
+
             psIDAndName.setInt(1, deptID);
             psIDAndName.setString(2, deptName);
+            
             rs = psIDAndName.executeQuery();
             System.out.println("\nDepartment details for Dept_ID " + deptID + " and Name " + deptName + ":");
             if (!rs.isBeforeFirst()) {

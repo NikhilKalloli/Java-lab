@@ -2,7 +2,7 @@ package Week3;
 
 import java.sql.*;
 
-public class SubjectDatabase {
+public class Subject {
     public static void main(String[] args) {
         String DB_URL = "jdbc:mysql://localhost:3306/SubjectDB"; // Update with your database name
         String USER = "root";

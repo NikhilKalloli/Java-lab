@@ -1,49 +1,52 @@
-// Greeting.java
+// Calculate.java
 
 package myPack;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
-//import jakarta.servlet.annotation.*;
 
-//@WebServlet("/Greeting")
-public class Greeting extends HttpServlet {
+public class Calculate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        String repass = request.getParameter("repass");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		float sum = 0;
+		float avg = 0;
+		for(int i =0;i<4;i++) {
+			sum+= Float.parseFloat(request.getParameter("cgpa"+Integer.toString(i+1)));
+		}
+		avg = sum/ 4;
+		response.getWriter().println("<html><body>");
+		response.getWriter().println("<h1> the CGPA is  " + String.valueOf(avg) + "</h1>");
+		response.getWriter().println("</body></html>");
+	}
 
-        response.getWriter().println("<html><body>");
-        if (pass.equals(repass) && pass.length() >= 8) {
-	        response.getWriter().println("<h1>Registered, " + name + "!</h1>");
-        } else {
-	        response.getWriter().println("<h1>Enter matching passwords of length atleast 8, " + name + "!</h1>");
-        }
-        response.getWriter().println("</body></html>");
-    }
 }
 
 <!-- index.html -->
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Registration Page</h1>
-    <form action="Greeting" method="POST">
-        <label for="name">UserName:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="pass">Password:</label>
-        <input type="password" id="pass" name="pass" required>
-        <label for="repass">Re-enter Password:</label>
-        <input type="password" id="repass" name="repass" required>
-        <input type="submit" value="Submit">
-    </form>
-</body>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Calculate CGPA</title>
+	</head>
+	<body>
+		<form method = "post" action ="Calculate">
+			<h1>CGPA DETAILS :</h1>
+
+			<p>Enter USN :</p>
+			<input name = "usn" type = "text" required>
+
+			<p>Enter name :</p>
+			<input name = "name" type = "text" required>
+            
+			<p>Enter all SGPAS's :</p>
+			<input name = "cgpa1" type = "text" required>
+			<input name = "cgpa2" type = "text" required>
+			<input name = "cgpa3" type = "text" required>
+			<input name = "cgpa4" type = "text" required>
+			<input type = "submit" value ="submit">
+		</form>
+	</body>
 </html>
