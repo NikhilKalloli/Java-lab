@@ -1,0 +1,56 @@
+package myPack;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.*;
+
+public class Payroll extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String name = request.getParameter("name");
+        int hoursWorked = Integer.parseInt(request.getParameter("hoursWorked"));
+        int hourlyPayRate = Integer.parseInt(request.getParameter("hourlyPayRate"));
+
+        int grossPay = hoursWorked * hourlyPayRate;
+        double tax = grossPay * 0.20;
+        double netPay = grossPay - tax;
+
+        out.println("<html><body>");
+        out.println("<h1>Payroll Details</h1>");
+        out.println("<p>Employee Name: " + name + "</p>");
+        out.println("<p>Hours Worked:" + hoursWorked + "</p>");
+        out.println("<p>Hourly Pay Rate:$" + hourlyPayRate + "</p>");
+        out.println("<p>Gross Pay: $" + grossPay + "</p>");
+        out.println("<p>Tax (20%):$" + tax + "</p>");
+        out.println("<p>Net Pay:$" + netPay + "</p>");
+        out.println("</body></html>");
+    }
+}
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Employee Payroll</title>
+    </head>
+    <body>
+        <h1>Payroll Form</h1>
+        <form action="Payroll" method="POST">
+            Employee Name:
+            <input name="name" required>
+
+            Number of Hours Worked:
+            <input type="number" name="hoursWorked" required>
+
+            Hourly Pay Rate:
+            <input type="number" name="hourlyPayRate" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+// Police.java
+
+package myPack;
+
+import java.io.*;
+import java.sql.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+public class Police extends HttpServlet {
+
+    String URL = "jdbc:mysql://localhost:3306/dbName";
+    String User = "root";
+    String Pass = "";
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String area = request.getParameter("area");
+        String phoneNumber = request.getParameter("phoneNumber");
+
+        try(Connection conn = DriverManager.getConnection(URL, USER, PASS)){
+
+            String query = "SELECT * FROM police WHERE area = ? OR phone_number = ?";
+            PreparedStatement pStmt = conn.prepareStatement(query);
+            pStmt.setString(1, area);
+            pStmt.setString(2, phoneNumber);
+
+            ResultSet rs = pStmt.executeQuery();
+
+            if (rs.next()) {
+                out.println("<h2>Police Station Details:</h2>");
+                out.println("Area: " + rs.getString("area") + "<br>");
+                out.println("Phone Number: " + rs.getString("phone_number") + "<br>");
+                out.println("Address: " + rs.getString("address") + "<br>");
+            } else {
+                out.println("<h2>No police station found for the given area or phone number.</h2>");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+}
+
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Police Station</title>
+</head>
+<body>
+    <h1>Police Station</h1>
+    <form action="Police" method="post">
+        Area: <input type="text" name="area"><br><br>
+        Phone Number: <input type="text" name="phoneNumber"><br><br>
+        <input value="Submit" type="submit">
+    </form>
+</body>
+</html>
