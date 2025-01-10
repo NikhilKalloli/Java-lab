@@ -77,12 +77,5 @@
         Title:<input name="searchTitle">
         <input value="Submit" type="submit">
     </form>
-
-    <h2>Search Book by Title</h2>
-    <form action="searchBook.jsp" method="get">
-        Title:<input name="searchTitle" required>
-        <button type="submit">Search</button>
-    </form>
-
 </body>
 </html>

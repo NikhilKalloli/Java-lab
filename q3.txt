@@ -51,7 +51,7 @@
 <body>
     <h1>Enter USN</h1>
     <form action="displayData.jsp" method="post">
-        USN: <input type="text" name="usn" required>
+        USN: <input name="usn" required>
         <input value="Submit" type="submit">
     </form>
 </body>

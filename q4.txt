@@ -17,23 +17,21 @@ public class Police extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        String area = request.getParameter("area");
         String phoneNumber = request.getParameter("phoneNumber");
 
         try(Connection conn = DriverManager.getConnection(URL, USER, PASS)){
 
-            String query = "SELECT * FROM police WHERE area = ? OR phone_number = ?";
+            String query = "SELECT * FROM police WHERE phone_number = ?";
             PreparedStatement pStmt = conn.prepareStatement(query);
-            pStmt.setString(1, area);
-            pStmt.setString(2, phoneNumber);
+            pStmt.setString(1, phoneNumber);
 
             ResultSet rs = pStmt.executeQuery();
 
             if (rs.next()) {
                 out.println("<h2>Police Station Details:</h2>");
-                out.println("Area: " + rs.getString("area") + "<br>");
-                out.println("Phone Number: " + rs.getString("phone_number") + "<br>");
-                out.println("Address: " + rs.getString("address") + "<br>");
+                out.println("Area: " + rs.getString("area"));
+                out.println("Phone Number: " + rs.getString("phone_number"));
+                out.println("Address: " + rs.getString("address"));
             } else {
                 out.println("<h2>No police station found for the given area or phone number.</h2>");
             }
@@ -54,8 +52,7 @@ public class Police extends HttpServlet {
 <body>
     <h1>Police Station</h1>
     <form action="Police" method="post">
-        Area: <input type="text" name="area"><br><br>
-        Phone Number: <input type="text" name="phoneNumber"><br><br>
+        Phone Number: <input type="text" name="phoneNumber">
         <input value="Submit" type="submit">
     </form>
 </body>

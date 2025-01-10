@@ -29,10 +29,10 @@ public class Cookies extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                out.println("Name: " + cookie.getName() + ", Value: " + cookie.getValue());
+                out.println("Name: " + cookie.getName() + "Value: " + cookie.getValue());
             }
         } else {
-            out.println("No cookies found.<br>");
+            out.println("No cookies found");
         }
     }
 }
